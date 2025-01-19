@@ -1,0 +1,33 @@
+package com.loxx3450.hw19_12_24.task5;
+
+public class Violin extends MusicalInstrument {
+  private int whatever;
+
+  public Violin(int whatever) {
+    super(Violin.class.getSimpleName());
+    this.whatever = whatever;
+  }
+
+  public int getWhatever() {
+    return whatever;
+  }
+
+  public void setWhatever(int whatever) {
+    this.whatever = whatever;
+  }
+
+  @Override
+  public void sound() {
+    System.out.println("[sound of violin...]");
+  }
+
+  @Override
+  public void desc() {
+    System.out.println("Violin: " + this.getName() + " " + this.whatever);
+  }
+
+  @Override
+  public void history() {
+    System.out.println("bla bla bla a long time ago bla bla bla");
+  }
+}
