@@ -1,0 +1,1 @@
+HW 25.01.25: I couldn't find a reasonable way to use multiple threads for these tasks. The tasks are too small, and creating new threads would consume more resources without speeding up the application enough. Therefore, I decided just to call each method in a non-blocking manner.
