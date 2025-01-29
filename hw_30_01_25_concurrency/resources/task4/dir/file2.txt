@@ -1,0 +1,3 @@
+Another example file.
+This one has the word none in it.
+Checking for occurrences.
