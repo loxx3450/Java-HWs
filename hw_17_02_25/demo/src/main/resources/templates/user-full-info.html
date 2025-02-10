@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Details</title>
+</head>
+<body>
+  <h1>User Details</h1>
+
+<!--/*@thymesVar id="user" type="com.loxx3450.hw_17_02_25.entity.User"*/-->
+  <p>
+    <strong>Full Name:</strong>
+    <span th:text="${user.fullName}"/>
+  </p>
+  <p>
+    <strong>Phone Number:</strong>
+    <span th:text="${user.phoneNumber}"/>
+  </p>
+  <p>
+    <strong>Email:</strong>
+    <span th:text="${user.email}"/>
+  </p>
+  <p>
+    <strong>Link to Blog:</strong>
+    <span th:text="${user.linkToBlog}"/>
+  </p>
+  <p>
+    <strong>Notes:</strong>
+    <span th:text="${user.notes}"/>
+  </p>
+
+  <a th:href="@{/users}">
+    <button>Back to Users</button>
+  </a>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Users</title>
+
+  <style>
+    td {
+      padding: 5px;
+    }
+    th {
+      padding: 5px;
+    }
+  </style>
+
+</head>
+<body>
+  <h1>List of Users:</h1>
+
+  <form th:action="@{/users}" method="get" style="margin-bottom: 20px; text-align: end">
+    <input type="text" name="namePattern" th:value="${pattern}" placeholder="Search users by name..." />
+    <button type="submit">Search</button>
+  </form>
+
+  <a th:href="@{/users/add}">
+    <button style="margin-bottom: 20px; background-color: darkseagreen">Add New User</button>
+  </a>
+
+  <table border="1">
+    <tr>
+      <th>Full Name</th>
+      <th>Phone Number</th>
+      <th>Email</th>
+      <th>Actions</th>
+    </tr>
+    <tr th:each="user : ${users}">
+      <td th:text="${user.fullName}"></td>
+      <td th:text="${user.phoneNumber}"></td>
+      <td th:text="${user.email}"></td>
+      <td>
+        <a th:href="@{/users/{id}(id=${user.id})}">
+          <button style="background-color: mediumpurple">Full Info</button>
+        </a>
+        <a th:href="@{/users/edit/{id}(id=${user.id})}">
+          <button style="background-color: cornflowerblue">Edit</button>
+        </a>
+        <form th:action="@{/users/{id}(id=${user.id})}" method="post" style="display: inline">
+          <input type="hidden" name="_method" value="DELETE">
+          <button type="submit" style="background-color: indianred">Delete</button>
+        </form>
+      </td>
+    </tr>
+  </table>
+
+</body>
+</html>
