@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Shops</title>
+
+  <style>
+    td {
+      padding: 5px;
+      font-size: 16px;
+    }
+    th {
+      padding: 5px;
+    }
+  </style>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="m-4">
+  <h1>List of Shops</h1>
+
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <a th:href="@{/shops/add}" class="btn btn-success mt-2 mb-2">Add New Shop</a>
+
+    <form th:action="@{/shops}" method="get" class="d-flex gap-2" style="width: 400px;">
+      <input type="text" name="namePattern" class="form-control form-control-sm" placeholder="Name"
+             th:value="${filter.namePattern}">
+      <input type="text" name="addressPattern" class="form-control form-control-sm" placeholder="Address"
+             th:value="${filter.addressPattern}">
+      <select name="categoryPattern" class="form-select form-select-sm">
+        <option value="">All</option>
+        <option th:each="category : ${T(com.example.hw_20_02_25.entity.ShopType).values()}"
+                th:value="${category}" th:text="${category}"
+                th:selected="${category.toString().equalsIgnoreCase(filter.categoryPattern)}">
+        </option>
+      </select>
+      <button type="submit" class="btn btn-primary btn-sm">🔍</button>
+    </form>
+  </div>
+
+  <table th:if="${shops.size() > 0}" class="table table-bordered">
+    <thead class="table-dark">
+    <tr>
+      <th>Name</th>
+      <th>Address</th>
+      <th>Phone</th>
+      <th>Website</th>
+      <th>Category</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+      <tr th:each="shop : ${shops}">
+        <!--/*@thymesVar id="shop" type="com.example.hw_20_02_25.entity.Shop"*/-->
+        <td th:text="${shop.name}"></td>
+        <td th:text="${shop.address}"></td>
+        <td th:text="${shop.phone}"></td>
+        <td><a th:href="${shop.website}" target="_blank" th:text="${shop.website}"></a></td>
+        <td th:text="${shop.type}"></td>
+        <td>
+          <a th:href="@{/shops/{id}(id=${shop.id})}" class="btn btn-dark btn-sm">
+            Full Info
+          </a>
+          <a th:href="@{/shops/edit/{id}(id=${shop.id})}" class="btn btn-primary btn-sm">
+            Edit
+          </a>
+          <form th:action="@{/shops/{id}(id=${shop.id})}" method="post" style="display: inline">
+            <input type="hidden" name="_method" value="DELETE">
+            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+          </form>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p th:unless="${shops.size() > 0}">
+    There are no stored shops :-(
+  </p>
+</body>
+</html>
