@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop Details</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body class="container mt-4">
+  <h1 class="mb-3" style="text-align: center">Shop Full Info</h1>
+
+  <!--/*@thymesVar id="shop" type="com.example.hw_20_02_25.entity.Shop"*/-->
+  <div class="card p-3 shadow-sm">
+    <div class="row">
+      <div class="col-md-4">
+        <img th:src="@{${shop.logotypePath}}" alt="Shop Logo" class="img-fluid rounded">
+      </div>
+      <div class="col-md-8">
+        <p>
+          <strong>Name:</strong>
+          <span th:text="${shop.name}"/>
+        </p>
+        <p>
+          <strong>Address:</strong>
+          <span th:text="${shop.address}"/>
+        </p>
+        <p>
+          <strong>Phone:</strong>
+          <span th:text="${shop.phone}"/>
+        </p>
+        <p>
+          <strong>Email:</strong>
+          <span th:text="${shop.email}"/>
+        </p>
+        <p>
+          <strong>Website:</strong>
+          <a th:href="${shop.website}" th:text="${shop.website}" target="_blank"/>
+        </p>
+        <p>
+          <strong>Category:</strong>
+          <span th:text="${shop.type}"/>
+        </p>
+        <p>
+          <strong>Description:</strong>
+          <span th:text="${shop.description}"/>
+        </p>
+      </div>
+    </div>
+  </div>
+
+<a th:href="@{/shops}" class="btn btn-primary mt-3">Back to Shops</a>
+</body>
+</html>

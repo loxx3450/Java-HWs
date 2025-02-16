@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Shop</title>
+
+  <style>
+    label {
+      font-size: 12px;
+    }
+    input {
+      font-size: 8px;
+    }
+  </style>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body style="width: 50%; margin: 5px auto">
+<h1 class="mb-2 text-center">Edit Shop</h1>
+
+<!--/*@thymesVar id="shop" type="com.example.hw_20_02_25.entity.Shop"*/-->
+<form th:action="@{/shops}" method="post" th:object="${shop}" class="card p-3 shadow-sm" enctype="multipart/form-data">
+  <input type="hidden" name="_method" value="PUT"/>
+  <input type="hidden" th:field="*{id}" />
+
+  <div class="mb-2">
+    <label for="name" class="form-label">Shop Name:</label>
+    <input id="name" type="text" class="form-control form-control-sm" th:field="*{name}" required />
+  </div>
+
+  <div class="mb-2">
+    <label for="address" class="form-label">Address:</label>
+    <input id="address" type="text" class="form-control form-control-sm" th:field="*{address}" required />
+  </div>
+
+  <div class="mb-2">
+    <label for="phone" class="form-label">Phone Number:</label>
+    <input id="phone" type="text" class="form-control form-control-sm" th:field="*{phone}" required />
+  </div>
+
+  <div class="mb-2">
+    <label for="email" class="form-label">Email:</label>
+    <input id="email" type="email" class="form-control form-control-sm" th:field="*{email}" required />
+  </div>
+
+  <div class="mb-2">
+    <label for="website" class="form-label">Website:</label>
+    <input id="website" type="url" class="form-control form-control-sm" th:field="*{website}" required />
+  </div>
+
+  <div class="mb-2">
+    <label for="type" class="form-label">Category:</label>
+    <select id="type" class="form-select form-select-sm" th:field="*{type}" required>
+      <option th:each="category : ${T(com.example.hw_20_02_25.entity.ShopType).values()}"
+              th:value="${category}" th:text="${category}"></option>
+    </select>
+  </div>
+
+
+  <div class="mb-2">
+    <label for="description" class="form-label">Description:</label>
+    <textarea id="description" class="form-control form-control-sm" th:field="*{description}" required></textarea>
+  </div>
+
+  <div class="mb-2">
+    <label class="form-label">Current Logotype:</label>
+    <div class="mb-2">
+      <img th:src="@{${shop.logotypePath}}" alt="Current Logo" class="img-fluid rounded"
+           style="max-width: 150px; display: block;">
+    </div>
+
+    <!-- Hidden field to keep the existing logotype path -->
+    <input type="hidden" name="existingLogotypePath" th:value="${shop.logotypePath}" />
+
+    <label for="logotype" class="form-label">Upload Logotype:</label>
+    <input id="logotype" type="file" class="form-control form-control-sm" name="logotypeFile" accept="image/*" />
+  </div>
+
+  <button type="submit" class="btn btn-primary btn-sm mt-2 mb-2">Edit Shop</button>
+  <a th:href="@{/shops}" class="btn btn-secondary btn-sm">Cancel</a>
+</form>
+</body>
+</html>
