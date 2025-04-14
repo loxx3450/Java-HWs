@@ -37,3 +37,13 @@ CREATE TABLE recipes_ingredients (
 
     PRIMARY KEY (recipe_id, ingredient_id)
 );
+
+
+-- JDBC AUTHENTICATION
+CREATE TABLE users (
+    id SERIAL PRIMARY KEY,
+    login VARCHAR(50) UNIQUE NOT NULL,
+    password VARCHAR(50) NOT NULL,
+    authority VARCHAR(50) NOT NULL
+);
+

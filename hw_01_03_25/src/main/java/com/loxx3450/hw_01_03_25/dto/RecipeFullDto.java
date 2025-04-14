@@ -13,7 +13,6 @@ public class RecipeFullDto extends RecipeSummaryDto {
     private String receipt;
     private Country originCountry;
     private FoodType type;
-    private List<Integer> ingredientsIds;
 
     @PersistenceCreator
     public RecipeFullDto(
@@ -25,14 +24,12 @@ public class RecipeFullDto extends RecipeSummaryDto {
             Country originCountry,
             MealTime mealTime,
             FoodType type,
-            int popularity,
-            List<Integer> ingredientsIds) {
+            int popularity) {
 
         super(id, title, description, link, mealTime, popularity);
 
         this.receipt = receipt;
         this.originCountry = originCountry;
         this.type = type;
-        this.ingredientsIds = ingredientsIds;
     }
 }

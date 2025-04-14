@@ -54,3 +54,10 @@ INSERT INTO recipes_ingredients (recipe_id, ingredient_id) VALUES
 -- Pumpkin Soup
 (7, 11), -- Milk
 (7, 12); -- Butter
+
+
+INSERT INTO users (login, password, authority)
+VALUES
+    ('user', 'userpass', 'ROLE_USER'),
+    ('admin', 'adminpass', 'ROLE_ADMIN');
+
