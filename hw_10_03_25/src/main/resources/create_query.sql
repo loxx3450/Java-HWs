@@ -1,0 +1,9 @@
+CREATE TABLE books (
+   id SERIAL PRIMARY KEY,
+   title VARCHAR(50) NOT NULL UNIQUE,
+   author VARCHAR(150) NOT NULL,
+   published_in INTEGER NOT NULL CHECK (published_in BETWEEN 0 AND EXTRACT(YEAR FROM CURRENT_DATE)),
+   genre VARCHAR(50) NOT NULL,
+   pages_count INTEGER NOT NULL,
+   description VARCHAR(200) NOT NULL
+);
